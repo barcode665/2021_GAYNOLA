@@ -32,15 +32,15 @@ function getWeather(lat, long) {
 		$("#temp_fahrenheit").html(tempF);
 		$("#clouds").text(clouds);
 		$("#humidity").text(humidity);
-		
+		//Converting to timestamp
 		var date = new Date(data.dt*1000);
-		console.log(date)
+		// console.log( moment(date).local().format("DD MMM"))
 		var sunrise = new Date(data.sys.sunrise*1000);
 		var sunset = new Date(data.sys.sunset*1000);
 		
-		var current_date = moment(date).format("DD MMM"); 
-		sunrise = moment(sunrise).format("h:mm A"); 
-		sunset = moment(sunset).format("h:mm A"); 
+		var current_date = moment(date).local().format("DD MMM"); 
+		sunrise = moment(sunrise).local().format("h:mm A"); 
+		sunset = moment(sunset).local().format("h:mm A"); 
 		
 		$("#current_date").text(current_date);
 		$("#sunrise").text(sunrise);
