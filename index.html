@@ -1,0 +1,579 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>Home Page</title>
+  <!-- Vender -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/animate.css" rel="stylesheet" />
+  <!-- Main CSS (SCSS Compile) -->
+  <link href="css/main.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="page-loader">
+  </div>
+  <div class="page">
+
+    <a href="#" class="logo">
+      <img alt="" src="images/logo.png">
+    </a>
+
+    <div class="menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="book-icon">
+      <i class="fas fa-bed"></i>
+    </div>
+    <div class="search-icon d-none">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <!--home-hero-->
+    <section class="home-hero">
+
+      <div class="home-hero-media"><video playsinline="" autoplay="" muted="" loop="" class="hero-video lazyloaded">
+          <source src="images/video.mov" type="video/mp4"></video></div>
+      <div class="container">
+
+        <div class="hero-home-content">
+
+          <h1 class=" wow fadeInUp" data-wow-delay="0.4s">gay<span>NOLA</span></h1>
+          <p class=" wow fadeInUp" data-wow-delay="0.6s">New Orleans experiences, As unique as you are.
+            <img alt="" src="images/flag.png">
+          </p>
+        </div>
+      </div>
+
+      <div class="scroll-down-wrap">
+
+        <div class="scroll-down"></div>
+        <p>Scroll down</p>
+      </div>
+    </section>
+
+
+    <!--block-->
+    <section class="block-one" data-wow-delay="0.3s">
+
+      <div class="container">
+
+        <div class="bo-inner">
+
+
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+              <div class="item item-one">
+                <div class="head">
+                  <strong>Spring</strong>
+                  <p>Mar - May</p>
+                </div>
+                <div class="content">
+                  <img alt="" src="images/1.jpg">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+              <div class="item item-two">
+                <div class="head">
+                  <strong>Summer</strong>
+                  <p>Jun - Aug</p>
+                </div>
+                <div class="content">
+                  <img alt="" src="images/2.jpg">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+              <div class="item item-three">
+                <div class="head">
+                  <strong>FALL</strong>
+                  <p>Sep - Now</p>
+                </div>
+                <div class="content">
+                  <img alt="" src="images/3.jpg">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+              <div class="item item-four">
+                <div class="head">
+                  <strong>Winter</strong>
+                  <p>Dec - Fed</p>
+                </div>
+                <div class="content">
+                  <img alt="" src="images/4.jpg">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weather">
+
+          <div class="left">
+            <div class="date" id="current_date">23 Dec</div>
+            <div class="value" id="temp_fahrenheit">65°F</div>
+            <div class="icon"></div>
+          </div>
+
+          <div class="line">
+          </div>
+
+          <div class="mid">
+            <div class="item">
+              <div class="icon"></div>
+              <span id="clouds">100%</span>
+            </div>
+            <div class="item">
+              <div class="icon icon-humidity"></div>
+              <span id="humidity">39%</span>
+            </div>
+          </div>
+
+          <div class="line">
+          </div>
+
+          <div class="right">
+            <div class="item">
+              <span>Sunrise</span>
+              <p id="sunrise">6:37 am</p>
+            </div>
+            <div class="item">
+              <span>Sunset</span>
+              <p id="sunset">5:37 am</p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!--block-->
+    <section class="block block-two wow fadeInUp" data-wow-delay="0.3s">
+
+      <div class="container">
+
+        <div class="block-caption">
+
+          <span>Best of New Orleans</span>
+          <h3>Winter</h3>
+        </div>
+        <div class="list">
+
+          <div class="item-wrap">
+            <div class="item">
+              <div class="thumb">
+                <img alt="" src="images/5.jpg">
+              </div>
+              <div class="caption">
+                <h3>Deck the halls amazing light </h3>
+                <a href="#" class="button  button-brand">Explore
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="item-wrap">
+            <div class="item">
+              <div class="thumb">
+                <img alt="" src="images/6.jpg">
+              </div>
+              <div class="caption">
+                <h3>Best gray mardi gras balls</h3>
+                <a href="#" class="button button-brand">Explore <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item-wrap">
+            <div class="item">
+              <div class="thumb">
+                <img alt="" src="images/7.jpg">
+              </div>
+              <div class="caption">
+                <h3>Must see mardi Gras Parades</h3>
+                <a href="#" class="button button-brand">Explore <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item-wrap">
+            <div class="item">
+              <div class="thumb">
+                <img alt="" src="images/8.jpg">
+              </div>
+              <div class="caption">
+                <h3>New year eve in Nola</h3>
+                <a href="#" class="button button-brand">Explore <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item-wrap">
+            <div class="item">
+              <div class="thumb">
+                <img alt="" src="images/9.jpg">
+              </div>
+              <div class="caption">
+                <h3>Local hot beverages</h3>
+                <a href="#" class="button button-brand">Explore <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="see-all">
+
+          <a href="#">
+            See all <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <!--block-->
+    <section class="block block-three wow fadeInUp" data-wow-delay="0.3s">
+
+      <div class="container">
+
+        <div class="block-caption is-white">
+
+          <h3>Upcoming events</h3>
+        </div>
+        <div class="list-block">
+
+          <div class="row">
+
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+
+              <div class="item">
+                <a href="#">
+
+                  <div class="thumb">
+
+                    <img alt="" src="images/10.jpg">
+                  </div>
+                  <div class="caption">
+
+                    <span class="date">Feb 05, 2021</span>
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+
+              <div class="item">
+                <a href="#">
+
+                  <div class="thumb">
+
+                    <img alt="" src="images/11.jpg">
+                  </div>
+                  <div class="caption">
+
+                    <span class="date">Feb 05, 2021</span>
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+
+              <div class="item">
+                <a href="#">
+
+                  <div class="thumb">
+
+                    <img alt="" src="images/12.jpg">
+                  </div>
+                  <div class="caption">
+
+                    <span class="date">Feb 05, 2021</span>
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+
+              <div class="item">
+                <a href="#">
+
+                  <div class="thumb">
+
+                    <img alt="" src="images/13.jpg">
+                  </div>
+                  <div class="caption">
+
+                    <span class="date">Feb 05, 2021</span>
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="see-all is-white">
+
+          <a href="#">
+            See all <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <!--block-->
+    <section class="block block-four wow fadeInUp" data-wow-delay="0.3s">
+
+      <div class="container">
+
+        <div class="block-caption">
+
+          <h3>Plan your visit</h3>
+        </div>
+        <div class="list-block">
+          <div class="row">
+
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+
+              <div class="item">
+                <a href="#">
+
+                  <div class="thumb">
+
+                    <img alt="" src="images/10.jpg">
+                  </div>
+                  <div class="caption">
+
+                    <span class="date">Feb 05, 2021</span>
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+
+              <div class="item">
+                <a href="#">
+
+                  <div class="thumb">
+
+                    <img alt="" src="images/11.jpg">
+                  </div>
+                  <div class="caption">
+
+                    <span class="date">Feb 05, 2021</span>
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+
+              <div class="item">
+                <a href="#">
+
+                  <div class="thumb">
+
+                    <img alt="" src="images/12.jpg">
+                  </div>
+                  <div class="caption">
+
+                    <span class="date">Feb 05, 2021</span>
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+
+              <div class="item">
+                <a href="#">
+
+                  <div class="thumb">
+
+                    <img alt="" src="images/13.jpg">
+                  </div>
+                  <div class="caption">
+
+                    <span class="date">Feb 05, 2021</span>
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="see-all">
+
+          <a href="#">
+            See all <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+    </section>
+    <!--block-->
+    <section class="block block-five wow fadeInUp" data-wow-delay="0.3s">
+
+      <div class="container">
+
+        <div class="block-caption">
+
+          <h3>Local's Lagniappe</h3>
+        </div>
+        <div class="list-block">
+          <div class="row">
+
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+
+              <div class="item">
+                <a href="#">
+
+                  <div class="thumb">
+
+                    <img alt="" src="images/10.jpg">
+                  </div>
+                  <div class="caption">
+
+                    <span class="date">Feb 05, 2021</span>
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+
+              <div class="item">
+                <a href="#">
+
+                  <div class="thumb">
+
+                    <img alt="" src="images/11.jpg">
+                  </div>
+                  <div class="caption">
+
+                    <span class="date">Feb 05, 2021</span>
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+
+              <div class="item">
+                <a href="#">
+
+                  <div class="thumb">
+
+                    <img alt="" src="images/12.jpg">
+                  </div>
+                  <div class="caption">
+
+                    <span class="date">Feb 05, 2021</span>
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+
+              <div class="item">
+                <a href="#">
+
+                  <div class="thumb">
+
+                    <img alt="" src="images/13.jpg">
+                  </div>
+                  <div class="caption">
+
+                    <span class="date">Feb 05, 2021</span>
+                    <h3>Lorem ipsum dolor sit amet</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="see-all">
+
+          <a href="#">
+            See all <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+    </section>
+    <!--footer-->
+
+    <footer class="footer wow fadeInUp" data-wow-delay="0.3s">
+      <div class="container">
+
+        <h2>#GAYNOLA</h2>
+        <p>Copyright © 2021 All Rights Reserved</p>
+        <div class="social">
+
+          <a href="#">
+            <i class="fab fa-facebook-f">
+            </i>
+          </a>
+          <a href="#">
+            <i class="fab fa-twitter">
+            </i>
+          </a>
+          <a href="#">
+            <i class="fab fa-instagram">
+            </i>
+          </a>
+          <a href="#">
+            <i class="fab fa-pinterest">
+            </i>
+          </a>
+          <a href="#">
+            <i class="fab fa-youtube">
+            </i>
+          </a>
+
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <!--scrip file-->
+  <script src="js/jquery-1.12.4.min.js"></script>
+  <script src="js/moment.js"></script>
+  <script src="js/axios.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script>
+	var header_token='CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw';
+	async function get_entities() {
+		var fields="fields.name,fields.date,fields.dateEnd,fields.description,fields.images,fields.sponsorpromoter,fields.venue";
+		const response = await axios.get('https://api.contentful.com/spaces/o006zo04tiuo/environments/master/entries?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&select='+fields+'&content_type=event&include=2',{params: {}});
+		return response;
+	}
+	//var entities=get_entities();
+	//console.log(entities);
+  </script>
+</body>
+
+</html>
