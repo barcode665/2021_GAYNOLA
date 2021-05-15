@@ -1,17 +1,6 @@
 $(function() {
-  $.ajax({
-    url: "https://geoip-db.com/jsonp",
-    jsonpCallback: "callback",
-    dataType: "jsonp",
-    success: function(location) {
-      var city = location.city,
-        state = location.state,
-        country = location.country_name,
-        lat = location.latitude,
-        long = location.longitude;
-		getWeather(lat, long);
-    }
-  });
+	//new orleans lat long
+	getWeather('29.951065', '-90.071533');
 });
 
 function getWeather(lat, long) {
@@ -33,14 +22,10 @@ function getWeather(lat, long) {
 		$("#clouds").text(clouds);
 		$("#humidity").text(humidity);
 		//Converting to timestamp
-		var date = new Date(data.dt*1000);
-		// console.log( moment(date).local().format("DD MMM"))
-		var sunrise = new Date(data.sys.sunrise*1000);
-		var sunset = new Date(data.sys.sunset*1000);
 		
-		var current_date = moment(date).local().format("DD MMM"); 
-		sunrise = moment(sunrise).local().format("h:mm A"); 
-		sunset = moment(sunset).local().format("h:mm A"); 
+		var current_date = moment.unix(data.dt).tz('America/Chicago').format("DD MMM"); 
+		var sunrise = moment.unix(data.sys.sunrise).tz('America/Chicago').format("h:mm A"); 
+		var sunset = moment.unix(data.sys.sunset).tz('America/Chicago').format("h:mm A"); 
 		
 		$("#current_date").text(current_date);
 		$("#sunrise").text(sunrise);
