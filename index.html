@@ -9,8 +9,11 @@
   <title>Home Page</title>
   <!-- Vender -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <link href="css/bootstrap.min.css" rel="stylesheet" />
   <link href="css/animate.css" rel="stylesheet" />
   <link href="css/loader.css" rel="stylesheet" />
@@ -19,7 +22,7 @@
 </head>
 
 <body>
-<div class="loading">Loading&#8230;</div>
+  <div class="loading">Loading&#8230;</div>
   <div class="page-loader">
   </div>
   <div class="page">
@@ -34,6 +37,16 @@
       <span></span>
     </div>
 
+    <div id="sidemenu" class="sidenav">
+      <a href="#">Events</a>
+      <a href="#">Festivals</a>
+      <a href="#">Businesses</a>
+      <a href="#">Resources</a>
+      <a href="#">Organization</a>
+      <a href="#">Best Of</a>
+      <a href="#">Map</a>
+      <a href="#">Submit Events</a>
+    </div>
     <div class="book-icon">
       <i class="fas fa-bed"></i>
     </div>
@@ -45,7 +58,8 @@
     <section class="home-hero">
 
       <div class="home-hero-media"><video playsinline="" autoplay="" muted="" loop="" class="hero-video lazyloaded">
-          <source src="images/video.mov" type="video/mp4"></video></div>
+          <source src="images/video.mov" type="video/mp4">
+        </video></div>
       <div class="container">
 
         <div class="hero-home-content">
@@ -439,7 +453,7 @@
           <h3>Local's Lagniappe</h3>
         </div>
         <div class="list-block">
-          <div class="row" id="local_lagniappe">          
+          <div class="row" id="local_lagniappe">
             <div class="col-lg-3 col-md-6 col-sm-12 col-12">
 
               <div class="item">
@@ -565,37 +579,37 @@
   <script src="js/wow.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/app.js"></script>
-  
+
   <script>
-	var header_token='CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw';
-	var url='https://api.contentful.com/spaces/o006zo04tiuo/environments/master/';
-	async function get_entities(type,limit) {
-		var fields="fields.name,fields.date,fields.dateEnd,fields.description,fields.images,fields.sponsorpromoter,fields.venue";
-		const response = await axios.get(url+'entries?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&&content_type='+type+'&include=1&limit='+limit,{params: {}}).then(result => { 
-		return result.data
-		
-		});
-		return response;
-	}
-	async function get_entities_images(asset_id) {
-		var fields="fields.title,fields.file";
-		const response = await axios.get(url+'assets/'+asset_id+'?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&select='+fields,{params: {}}).then(result => { 
-			return result.data
-		});
-		return response;
-	}
-	async function callingFunction(type,element,limit){
-		var entities=await get_entities(type,limit);
-		//console.log(entities);
-		var entity_obj=entities.items;
-		var html="";
-		for(var i=0; i<entity_obj.length;i++){
-			var asset_id=entity_obj[i].fields.images['en-US'][0].sys.id;
-			var image=await get_entities_images(asset_id);
-			var image_url='https:'+image.fields.file['en-US'].url;
-			var date=(entity_obj[i].fields.date!=undefined)?entity_obj[i].fields.date['en-US']:new Date();
-			date=moment(date).format('MMMM DD,YYYY');
-			html+=`
+    var header_token = 'CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw';
+    var url = 'https://api.contentful.com/spaces/o006zo04tiuo/environments/master/';
+    async function get_entities(type, limit) {
+      var fields = "fields.name,fields.date,fields.dateEnd,fields.description,fields.images,fields.sponsorpromoter,fields.venue";
+      const response = await axios.get(url + 'entries?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&&content_type=' + type + '&include=1&limit=' + limit, { params: {} }).then(result => {
+        return result.data
+
+      });
+      return response;
+    }
+    async function get_entities_images(asset_id) {
+      var fields = "fields.title,fields.file";
+      const response = await axios.get(url + 'assets/' + asset_id + '?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&select=' + fields, { params: {} }).then(result => {
+        return result.data
+      });
+      return response;
+    }
+    async function callingFunction(type, element, limit) {
+      var entities = await get_entities(type, limit);
+      //console.log(entities);
+      var entity_obj = entities.items;
+      var html = "";
+      for (var i = 0; i < entity_obj.length; i++) {
+        var asset_id = entity_obj[i].fields.images['en-US'][0].sys.id;
+        var image = await get_entities_images(asset_id);
+        var image_url = 'https:' + image.fields.file['en-US'].url;
+        var date = (entity_obj[i].fields.date != undefined) ? entity_obj[i].fields.date['en-US'] : new Date();
+        date = moment(date).format('MMMM DD,YYYY');
+        html += `
 			<div class="col-lg-3 col-md-6 col-sm-12 col-12">
               <div class="item">
                 <a href="#">
@@ -610,22 +624,31 @@
               </div>
             </div>
 			`;
-		}
-		$(element).html('');
-		$(element).html(html);
-		if(element=='local_lagniappe'){
-			$('#'+element).append(html);
-		}
-	}
-	async function rendering_content(){
-		await callingFunction('event',"#upcoming_events",'4');	
-		await callingFunction('organization',"#local_lagniappe",'2');	
-		await callingFunction('resource',"local_lagniappe",'2');
-		//await callingFunction('articles',"#articles",'4');
-		await $(".loading").hide('slow');
-	}
-	rendering_content();
-	
+      }
+      $(element).html('');
+      $(element).html(html);
+      if (element == 'local_lagniappe') {
+        $('#' + element).append(html);
+      }
+    }
+    async function rendering_content() {
+      await callingFunction('event', "#upcoming_events", '4');
+      await callingFunction('organization', "#local_lagniappe", '2');
+      await callingFunction('resource', "local_lagniappe", '2');
+      //await callingFunction('articles',"#articles",'4');
+      await $(".loading").hide('slow');
+    }
+    rendering_content();
+
+  </script>
+  <script>
+   $(document).ready(function () {
+            $(function () {
+                $(".menu-icon").click(function () {
+                    $(this).toggleClass("active");
+                });
+            });
+        });
   </script>
 </body>
 
