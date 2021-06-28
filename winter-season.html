@@ -325,7 +325,7 @@
                                             </h3>
                                         </div>
                                         <div class="list">
-                                            <ul>
+                                            <ul id="winter_fest_events">
                                                 <li><a href="#">- Krewe of Claus</a>
                                                     <p>Description</p>
                                                 </li>
@@ -466,9 +466,9 @@
     <script>
         var header_token = 'CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw';
         var url = 'https://api.contentful.com/spaces/o006zo04tiuo/environments/master/';
-        async function get_entities(type, seasons,limit) {
+        async function get_entities(type, category,limit) {
             var fields = "fields.name,fields.date,fields.dateEnd,fields.description,fields.images,fields.sponsorpromoter,fields.venue";
-            const response = await axios.get(url + 'entries?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&fields.acitivtySeasons='+seasons+'&fields.activityTop10=true&content_type=' + type + '&include=1&limit=' + limit, {
+            const response = await axios.get(url + 'entries?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&fields.articleCategory='+category+'&fields.placementTop10=true&content_type=' + type + '&include=1&limit=' + limit, {
                 params: {}
             }).then(result => {
                 return result.data
@@ -478,7 +478,27 @@
         }
 		async function get_blog_entities(type, category,limit) {
             var fields = "fields.name,fields.date,fields.dateEnd,fields.description,fields.images,fields.sponsorpromoter,fields.venue";
-            const response = await axios.get(url + 'entries?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&fields.articleCategory='+category+'&content_type=' + type + '&include=1&limit=' + limit, {
+            const response = await axios.get(url + 'entries?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&fields.articleCategory='+category+'&content_type=' + type + '&fields.placementExploreMore=true&include=1&limit=' + limit, {
+                params: {}
+            }).then(result => {
+                return result.data
+
+            });
+            return response;
+        }
+		async function get_placementTopFestevent_entities(type, category,limit) {
+            var fields = "fields.name,fields.date,fields.dateEnd,fields.description,fields.images,fields.sponsorpromoter,fields.venue";
+            const response = await axios.get(url + 'entries?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&fields.articleCategory='+category+'&content_type=' + type + '&fields.placementTopFestevent=true&include=1&limit=' + limit, {
+                params: {}
+            }).then(result => {
+                return result.data
+
+            });
+            return response;
+        }
+		async function get_placementBestOf_entities(type, category,limit) {
+            var fields = "fields.name,fields.date,fields.dateEnd,fields.description,fields.images,fields.sponsorpromoter,fields.venue";
+            const response = await axios.get(url + 'entries?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&fields.articleCategory='+category+'&content_type=' + type + '&fields.placementBestOf=true&include=1&limit=' + limit, {
                 params: {}
             }).then(result => {
                 return result.data
@@ -497,20 +517,20 @@
         }
         async function callingFunction(type, seasons,element, limit) {
             var entities = await get_entities(type,seasons, limit);
-            //console.log(entities); return false;
+            console.log(entities); //return false;
             var entity_obj = entities.items;
             var html = "";
             var media = "";
             for (var i = 0; i < entity_obj.length; i++) {
-                var asset_id = entity_obj[i].fields.activityMedia['en-US'].sys.id;
+                var asset_id = entity_obj[i].fields.articleMedia['en-US'].sys.id;
                 var image = await get_entities_images(asset_id);
                 var image_url = 'https:' + image.fields.file['en-US'].url;                
 				if(i%2==0){
                 html += `
 				<div class="col-md-6">
 					<div class="list-item-first-column">
-						<div><span>${i+1}</span><a href="#">${entity_obj[i].fields.activityName['en-US']}</a>
-							<p>${entity_obj[i].fields.activityDescription['en-US'].content[0].content[0].value}</p>
+						<div><span>${i+1}</span><a href="#">${entity_obj[i].fields.title['en-US']}</a>
+							<p>${entity_obj[i].fields.articleBody['en-US'].content[0].content[0].value}</p>
 						</div>
 					</div>
 				</div>`;
@@ -518,28 +538,24 @@
 				if(i%2!=0){
 				 html += `<div class="col-md-6">
 					<div class="list-item-first-column">
-						<div><span>${i+1}</span><a href="#">${entity_obj[i].fields.activityName['en-US']}</a>
-							<p>${entity_obj[i].fields.activityDescription['en-US'].content[0].content[0].value}</p>
+						<div><span>${i+1}</span><a href="#">${entity_obj[i].fields.title['en-US']}</a>
+							<p>${entity_obj[i].fields.articleBody['en-US'].content[0].content[0].value}</p>
 						</div>
 					</div>
 				</div>
 				`;
-				}
-				media+=`<div class="col-md-3">
-						<a href="#"><img src="${image_url}" alt=""></a>
-					</div>
-				`;
+				}				
 			}//end of for loop
 			
             $(element).html('');
             $(element).html(html);
-			
-			$("#top_ten_activies_medias").html('');
-            $("#top_ten_activies_medias").html(media);           
+			         
         }
         async function rendering_content() {
-            await callingFunction('activities', 'Winter',"#top_ten_activies", '10');
-            await callingblogFunction('articles', 'Winter',"#blog_setup_area", '10');
+            await callingFunction('articles', 'Activity',"#top_ten_activies", '10');//placementtop10
+            await callingblogFunction('articles', 'Activity',"#blog_setup_area", '10');//placementExploreMore
+            await callingplacementTopFesteventFunction('articles', 'Activity',"#winter_fest_events", '10');//placementTopFestevent 
+			await callingplacementBestOfFunction('articles', 'Activity',"#top_ten_activies_medias", '10');//placementtop10
             await $(".loading").hide('slow');
         }
         rendering_content();
@@ -573,6 +589,42 @@
       }
       $(element).html('');
       $(element).html(html);     
+    }
+	async function callingplacementTopFesteventFunction(type, category, element, limit) {
+      var entities = await get_placementTopFestevent_entities(type,category, limit);
+      console.log(entities);//return false
+      var entity_obj = entities.items;
+      var html = "";
+      for (var i = 0; i < entity_obj.length; i++) {
+        var asset_id = entity_obj[i].fields.articleMedia['en-US'].sys.id;
+        html += `
+			<li><a href="#">- ${entity_obj[i].fields.title['en-US']}</a>
+				<p>${entity_obj[i].fields.articleBody['en-US'].content[0].content[0].value}</p>
+			</li>			
+			`;
+      }
+      $(element).html('');
+      $(element).html(html);     
+    }
+	async function callingplacementBestOfFunction(type, seasons,element, limit) {
+		var entities = await get_placementBestOf_entities(type,seasons, limit);
+		console.log(entities); //return false;
+		var entity_obj = entities.items;
+		var html = "";
+		var media = "";
+		for (var i = 0; i < entity_obj.length; i++) {
+			var asset_id = entity_obj[i].fields.articleMedia['en-US'].sys.id;
+			var image = await get_entities_images(asset_id);
+			var image_url = 'https:' + image.fields.file['en-US'].url;
+			html+=`<div class="col-md-3">
+					<a href="#"><img src="${image_url}" alt=""></a>
+				</div>
+			`;
+		}//end of for loop
+		
+		$(element).html('');
+		$(element).html(html);		
+		          
     }
     </script>
     <script>
