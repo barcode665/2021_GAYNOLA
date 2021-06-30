@@ -361,7 +361,7 @@
           <h3>Plan your visit</h3>
         </div>
         <div class="list-block">
-          <div class="row">
+          <div class="row" id="plan_your_visit">
 
             <div class="col-lg-3 col-md-6 col-sm-12 col-12">
 
@@ -579,13 +579,17 @@
   <script src="js/wow.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/app.js"></script>
-
+<style>.start_date,.hide_date{display:none;}</style>
   <script>
     var header_token = 'CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw';
     var url = 'https://api.contentful.com/spaces/o006zo04tiuo/environments/master/';
-    async function get_entities(type, limit) {
+    async function get_entities(type, limit,param) {
+	var ext_param="";
+	  if(param){
+		ext_param='fields.'+param+'=true';
+	  }
       var fields = "fields.name,fields.date,fields.dateEnd,fields.description,fields.images,fields.sponsorpromoter,fields.venue";
-      const response = await axios.get(url + 'entries?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&&content_type=' + type + '&include=1&limit=' + limit, { params: {} }).then(result => {
+      const response = await axios.get(url + 'entries?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&'+ext_param+'&content_type=' + type + '&include=1&limit=' + limit, { params: {} }).then(result => {
         return result.data
 
       });
@@ -598,8 +602,8 @@
       });
       return response;
     }
-    async function callingFunction(type, element, limit) {
-      var entities = await get_entities(type, limit);
+    async function callingFunction(type, element, limit,param) {
+      var entities = await get_entities(type, limit,param);
       //console.log(entities);
       var entity_obj = entities.items;
       var html = "";
@@ -608,7 +612,13 @@
         var image = await get_entities_images(asset_id);
         var image_url = 'https:' + image.fields.file['en-US'].url;
         var date = (entity_obj[i].fields.date != undefined) ? entity_obj[i].fields.date['en-US'] : new Date();
+        var future_date = (entity_obj[i].fields.dateEnd != undefined) ? entity_obj[i].fields.dateEnd['en-US'] : new Date();
         date = moment(date).format('MMMM DD,YYYY');
+        future_date = moment(future_date).format('MMMM DD,YYYY');
+		var hideclass="";
+		if(param){
+			hideclass='hide_date';
+		}
         html += `
 			<div class="col-lg-3 col-md-6 col-sm-12 col-12">
               <div class="item">
@@ -617,13 +627,15 @@
                     <img alt="" src="${image_url}">
                   </div>
                   <div class="caption">
-                    <span class="date">${date}</span>
+                    <span class="date ${hideclass}">Start : ${date}</span><br>
+                    <span class="date ${hideclass}">End : ${future_date}</span>
                     <h3>${entity_obj[i].fields.name['en-US']}</h3>
                   </div>
                 </a>
               </div>
             </div>
 			`;
+			
       }
       $(element).html('');
       $(element).html(html);
@@ -632,9 +644,9 @@
       }
     }
     async function rendering_content() {
-      await callingFunction('event', "#upcoming_events", '4');
-      await callingFunction('organization', "#local_lagniappe", '2');
-      await callingFunction('resource', "local_lagniappe", '2');
+      await callingFunction('event', "#upcoming_events", '4','');
+      await callingFunction('business', "#local_lagniappe", '4','placementFeatureOnWebsite');
+      await callingFunction('business', "#plan_your_visit", '4','placementPlanYourVisit');
       //await callingFunction('articles',"#articles",'4');
       await $(".loading").hide('slow');
     }
