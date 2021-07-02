@@ -499,7 +499,7 @@
         }
 		async function get_placementBestOf_entities(type, category,limit) {
             var fields = "fields.name,fields.date,fields.dateEnd,fields.description,fields.images,fields.sponsorpromoter,fields.venue";
-            const response = await axios.get(url + 'entries?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&fields.articleCategory='+category+'&content_type=' + type + '&fields.placementBestOf=true&fields.season[all]='+season+'&include=1&limit=' + limit, {
+            const response = await axios.get(url + 'entries?access_token=CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw&fields.articleCategory='+category+'&content_type=' + type + '&fields.placementTop10=true&fields.season[all]='+season+'&include=1&limit=' + limit, {
                 params: {}
             }).then(result => {
                 return result.data
