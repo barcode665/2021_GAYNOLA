@@ -343,7 +343,7 @@
         </div>
         <div class="see-all is-white">
 
-          <a href="#">
+          <a href="https://gaynola.com/events">
             See all <i class="fas fa-arrow-right"></i>
           </a>
         </div>
@@ -436,7 +436,7 @@
         </div>
         <div class="see-all">
 
-          <a href="#">
+          <a href="https://gaynola.com/business">
             See all <i class="fas fa-arrow-right"></i>
           </a>
         </div>
@@ -527,7 +527,7 @@
         </div>
         <div class="see-all">
 
-          <a href="#">
+          <a href="https://gaynola.com/business">
             See all <i class="fas fa-arrow-right"></i>
           </a>
         </div>
@@ -581,6 +581,7 @@
   <script src="js/app.js"></script>
 <style>.start_date,.hide_date{display:none;}</style>
   <script>
+	var base_url='https://gaynola.com/';
     var header_token = 'CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw';
     var url = 'https://api.contentful.com/spaces/o006zo04tiuo/environments/master/';
     async function get_entities(type, limit,param) {
@@ -602,7 +603,7 @@
       });
       return response;
     }
-    async function callingFunction(type, element, limit,param) {
+    async function callingFunction(type, element, limit,param,routes) {
       var entities = await get_entities(type, limit,param);
       //console.log(entities);
       var entity_obj = entities.items;
@@ -622,7 +623,7 @@
         html += `
 			<div class="col-lg-3 col-md-6 col-sm-12 col-12">
               <div class="item">
-                <a href="#">
+                <a href="${base_url}${routes}/${entity_obj[i].sys.id}">
                   <div class="thumb">
                     <img alt="" src="${image_url}">
                   </div>
@@ -644,9 +645,9 @@
       }
     }
     async function rendering_content() {
-      await callingFunction('event', "#upcoming_events", '4','');
-      await callingFunction('business', "#local_lagniappe", '4','placementFeatureOnWebsite');
-      await callingFunction('business', "#plan_your_visit", '4','placementPlanYourVisit');
+      await callingFunction('event', "#upcoming_events", '4','','events');
+      await callingFunction('business', "#local_lagniappe", '4','placementFeatureOnWebsite','business');
+      await callingFunction('business', "#plan_your_visit", '4','placementPlanYourVisit','business');
       //await callingFunction('articles',"#articles",'4');
       await $(".loading").hide('slow');
     }

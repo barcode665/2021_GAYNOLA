@@ -464,6 +464,7 @@
     <script src="js/main.js"></script> 
 
     <script>
+		var base_url='https://gaynola.com/events/';
 		var season='Spring';
         var header_token = 'CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw';
         var url = 'https://api.contentful.com/spaces/o006zo04tiuo/environments/master/';
@@ -530,7 +531,7 @@
                 html += `
 				<div class="col-md-6">
 					<div class="list-item-first-column">
-						<div><span>${i+1}</span><a href="#">${entity_obj[i].fields.title['en-US']}</a>
+						<div><span>${i+1}</span><a href="${base_url}${entity_obj[i].sys.id}">${entity_obj[i].fields.title['en-US']}</a>
 							<p>${entity_obj[i].fields.articleBody['en-US'].content[0].content[0].value}</p>
 						</div>
 					</div>
@@ -539,7 +540,7 @@
 				if(i%2!=0){
 				 html += `<div class="col-md-6">
 					<div class="list-item-first-column">
-						<div><span>${i+1}</span><a href="#">${entity_obj[i].fields.title['en-US']}</a>
+						<div><span>${i+1}</span><a href="${base_url}${entity_obj[i].sys.id}">${entity_obj[i].fields.title['en-US']}</a>
 							<p>${entity_obj[i].fields.articleBody['en-US'].content[0].content[0].value}</p>
 						</div>
 					</div>
@@ -581,7 +582,7 @@
 					</div>
 					<div class="caption">
 						<h3>${entity_obj[i].fields.title['en-US']} </h3>
-						<a href="#" class="button  button-brand">Explore
+						<a href="${base_url}${entity_obj[i].sys.id}" class="button  button-brand">Explore
 							<i class="fas fa-arrow-right"></i> </a>
 					</div>
 				</div>
@@ -598,7 +599,7 @@
       for (var i = 0; i < entity_obj.length; i++) {
         var asset_id = entity_obj[i].fields.articleMedia['en-US'].sys.id;
         html += `
-			<li><a href="#">- ${entity_obj[i].fields.title['en-US']}</a>
+			<li><a href="${base_url}${entity_obj[i].sys.id}">- ${entity_obj[i].fields.title['en-US']}</a>
 				<p>${entity_obj[i].fields.articleBody['en-US'].content[0].content[0].value}</p>
 			</li>			
 			`;
@@ -616,7 +617,7 @@
 			var image = await get_entities_images(asset_id);
 			var image_url = 'https:' + image.fields.file['en-US'].url;
 			html+=`<div class="col-md-3">
-					<a href="#"><img src="${image_url}" alt=""></a>
+					<a href="${base_url}${entity_obj[i].sys.id}"><img src="${image_url}" alt=""></a>
 				</div>
 			`;
 		}//end of for loop
