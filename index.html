@@ -187,7 +187,7 @@
           <span>Best of New Orleans</span>
           <h3>Winter</h3>
         </div>
-        <div class="list">
+        <div class="list" id="articles">
 
           <div class="item-wrap">
             <div class="item">
@@ -605,7 +605,8 @@
     }
     async function callingFunction(type, element, limit,param,routes) {
       var entities = await get_entities(type, limit,param);
-      //console.log(entities);
+	  if(type=='articles')
+      console.log(entities);
       var entity_obj = entities.items;
       var html = "";
       for (var i = 0; i < entity_obj.length; i++) {
@@ -648,11 +649,42 @@
       await callingFunction('event', "#upcoming_events", '4','','events');
       await callingFunction('business', "#local_lagniappe", '4','placementFeatureOnWebsite','business');
       await callingFunction('business', "#plan_your_visit", '4','placementPlanYourVisit','business');
-      //await callingFunction('articles',"#articles",'4');
+      await callingArticlesFunction('articles',"#articles",'4','');
       await $(".loading").hide('slow');
     }
     rendering_content();
 
+  </script>
+  <script>
+	async function callingArticlesFunction(type, element, limit,param) {
+		var entities = await get_entities(type,limit,param);		
+		var entity_obj = entities.items;
+		var html = "";
+		var media = "";
+		for (var i = 0; i < entity_obj.length; i++) {
+			var asset_id = entity_obj[i].fields.articleMedia['en-US'].sys.id;
+			var image = await get_entities_images(asset_id);
+			var image_url = 'https:' + image.fields.file['en-US'].url;
+			html+=`<div class="item-wrap">
+            <div class="item">
+              <div class="thumb">
+                <img alt="" src="${image_url}">
+              </div>
+              <div class="caption">
+                <h3>${entity_obj[i].fields.title['en-US']}</h3>
+                <a href="#" class="button  button-brand">Explore
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+			`;
+		}//end of for loop
+		
+		$(element).html('');
+		$(element).html(html);		
+		          
+    }
   </script>
   <script>
    $(document).ready(function () {

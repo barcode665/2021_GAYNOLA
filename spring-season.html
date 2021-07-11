@@ -464,7 +464,14 @@
     <script src="js/main.js"></script> 
 
     <script>
-		var base_url='https://gaynola.com/events/';
+		var getUrl = window.location;
+		if(getUrl.host=='gaynola.com'){
+			var base_url =  getUrl.origin + '/' +getUrl.pathname.split('/')[1]; 
+		}else{
+			var base_url =  getUrl.origin + '/' +getUrl.pathname.split('/')[1]+'/'+getUrl.pathname.split('/')[2]; 
+		}
+		base_url=base_url+'/'+'single.html?type=articles&id=';
+		
 		var season='Spring';
         var header_token = 'CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw';
         var url = 'https://api.contentful.com/spaces/o006zo04tiuo/environments/master/';
