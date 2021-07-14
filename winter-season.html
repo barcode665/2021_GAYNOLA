@@ -28,7 +28,7 @@
     <div class="page-loader">
     </div> 
     <div class="page">
-        <a href="#" class="logo">
+        <a href="index.html" class="logo">
             <img alt="" src="images/logo.png">
         </a>
         <div class="menu-icon">
@@ -37,15 +37,28 @@
             <span></span>
         </div>
         <div id="sidemenu" class="sidenav">
-            <a href="#">Events</a>
+            <div class="sidebar-logo">
+              <a href="index.html" class="logo">
+                <img alt="" src="images/logo.png">
+              </a>
+            </div>
+            <ul class="sidebar-item-content">              
+              <li class="sidebar-main-item"><a href="https://gaynola.com/map">Map</a></li>
+              <li class="sidebar-main-item"><a href="https://gaynola.com/events">Events</a></li>
+              <li class="sidebar-main-item"><a href="https://gaynola.com/festivals">Festivals</a></li>
+			  <li class="sidebar-main-item"><a href="https://gaynola.com/business">Businesses</a></li>
+			  <li class="sidebar-main-item"><a href="https://gaynola.com/resources">Resources</a></li>
+			  <li class="sidebar-main-item"><a href="https://gaynola.com/organization">Organizations</a></li>             
+            </ul>
+            <!-- <a href="#">Events</a>
             <a href="#">Festivals</a>
             <a href="#">Businesses</a>
             <a href="#">Resources</a>
             <a href="#">Organization</a>
             <a href="#">Best Of</a>
             <a href="#">Map</a>
-            <a href="#">Submit Events</a>
-        </div>
+            <a href="#">Submit Events</a> -->
+          </div>
 
         <div class="book-icon">
             <i class="fas fa-bed"></i>
@@ -463,7 +476,7 @@
     <script src="js/wow.min.js"></script>
     <script src="js/main.js"></script> 
 
-    <script>
+<script>
 		var getUrl = window.location;
 		if(getUrl.host=='gaynola.com'){
 			var base_url =  getUrl.origin + '/' +getUrl.pathname.split('/')[1]; 
@@ -528,36 +541,33 @@
             var entities = await get_entities(type,seasons, limit);
             //console.log(entities); //return false;
             var entity_obj = entities.items;
-            var html = "";
+			entity_obj= await filter_orders(entity_obj);
+            var html6 = "";
+            var html12 = "";
             var media = "";
             for (var i = 0; i < entity_obj.length; i++) {
                 var asset_id = entity_obj[i].fields.articleMedia['en-US'].sys.id;
                 var image = await get_entities_images(asset_id);
                 var image_url = 'https:' + image.fields.file['en-US'].url;                
-				if(i%2==0){
-                html += `
-				<div class="col-md-6">
-					<div class="list-item-first-column">
+				if(i<5){
+                html6 += `
 						<div><span>${i+1}</span><a href="${base_url}${entity_obj[i].sys.id}">${entity_obj[i].fields.title['en-US']}</a>
 							<p>${entity_obj[i].fields.articleBody['en-US'].content[0].content[0].value}</p>
 						</div>
-					</div>
-				</div>`;
-				}
-				if(i%2!=0){
-				 html += `<div class="col-md-6">
-					<div class="list-item-first-column">
+					`;
+				}else{
+				 html12 += `
 						<div><span>${i+1}</span><a href="${base_url}${entity_obj[i].sys.id}">${entity_obj[i].fields.title['en-US']}</a>
 							<p>${entity_obj[i].fields.articleBody['en-US'].content[0].content[0].value}</p>
 						</div>
-					</div>
-				</div>
 				`;
 				}				
 			}//end of for loop
 			
-            $(element).html('');
-            $(element).html(html);
+            $(element).find('.list-item-first-column').html('');
+            $(element).find('.list-item-first-column').html(html6);
+            $(element).find('.list-item-second-column').html('');
+            $(element).find('.list-item-second-column').html(html12);
 			         
         }
         async function rendering_content() {
@@ -574,6 +584,7 @@
       var entities = await get_blog_entities(type,category, limit);
       //console.log(entities);return false
       var entity_obj = entities.items;
+	  entity_obj= await filter_orders(entity_obj);
       var html = "";
       for (var i = 0; i < entity_obj.length; i++) {
         var asset_id = entity_obj[i].fields.articleMedia['en-US'].sys.id;
@@ -602,6 +613,7 @@
 	async function callingplacementTopFesteventFunction(type, category, element, limit) {
       var entities = await get_placementTopFestevent_entities(type,category, limit);     
       var entity_obj = entities.items;
+	  entity_obj= await filter_orders(entity_obj);
       var html = "";
       for (var i = 0; i < entity_obj.length; i++) {
         var asset_id = entity_obj[i].fields.articleMedia['en-US'].sys.id;
@@ -617,6 +629,7 @@
 	async function callingplacementBestOfFunction(type, seasons,element, limit) {
 		var entities = await get_placementBestOf_entities(type,seasons, limit);		
 		var entity_obj = entities.items;
+		entity_obj= await filter_orders(entity_obj);
 		var html = "";
 		var media = "";
 		for (var i = 0; i < entity_obj.length; i++) {
@@ -635,6 +648,16 @@
     }
     </script>
     <script>
+		async function filter_orders(entity_obj){
+			entity_obj.sort(function(a, b) {
+				if(a.fields.placementTop10Order !=undefined && b.fields.placementTop10Order!=undefined){
+					return a.fields.placementTop10Order['en-US'] - b.fields.placementTop10Order['en-US'];
+				}else{
+					return true;
+				}
+			});
+			return entity_obj;
+		}
         $(document).ready(function () {
             $(function () {
                 $(".menu-icon").click(function () {

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>Spring Season</title>
+    <title>Winter Season</title>
     <!-- Vender -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
@@ -28,7 +28,7 @@
     <div class="page-loader">
     </div> 
     <div class="page">
-        <a href="index.html" class="logo">
+        <a href="#" class="logo">
             <img alt="" src="images/logo.png">
         </a>
         <div class="menu-icon">
@@ -37,28 +37,15 @@
             <span></span>
         </div>
         <div id="sidemenu" class="sidenav">
-            <div class="sidebar-logo">
-              <a href="index.html" class="logo">
-                <img alt="" src="images/logo.png">
-              </a>
-            </div>
-            <ul class="sidebar-item-content">
-              <li class="sidebar-main-item"><a href="https://gaynola.com/map">Map</a></li>
-              <li class="sidebar-main-item"><a href="https://gaynola.com/events">Events</a></li>
-              <li class="sidebar-main-item"><a href="https://gaynola.com/festivals">Festivals</a></li>
-			  <li class="sidebar-main-item"><a href="https://gaynola.com/business">Businesses</a></li>
-			  <li class="sidebar-main-item"><a href="https://gaynola.com/resources">Resources</a></li>
-			  <li class="sidebar-main-item"><a href="https://gaynola.com/organization">Organizations</a></li> 
-            </ul>
-            <!-- <a href="#">Events</a>
+            <a href="#">Events</a>
             <a href="#">Festivals</a>
             <a href="#">Businesses</a>
             <a href="#">Resources</a>
             <a href="#">Organization</a>
             <a href="#">Best Of</a>
             <a href="#">Map</a>
-            <a href="#">Submit Events</a> -->
-          </div>
+            <a href="#">Submit Events</a>
+        </div>
 
         <div class="book-icon">
             <i class="fas fa-bed"></i>
@@ -76,7 +63,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="winter_text font-light-blue">
-                        <h2 class="font-lg-50">SPRING IN
+                        <h2 class="font-lg-50">WINTER IN
                             <br>NEW ORLEANS
                         </h2>
                     </div>
@@ -90,7 +77,7 @@
                 <div class="col-lg-12  col-sm-12 col-12">
                     <div class="tabs-main">
                         <ul class="nav nav-tabs">
-                            <li><a href="#winter_activities">SPRING ACTIVITIES</a></li>
+                            <li><a href="#winter_activities">WINTER ACTIVITIES</a></li>
                             <li><a href="#festivals_events">FESTIVALS & EVENTS</a></li>
                             <li><a href="#trip-planning">TRIP PLANNING</a></li>
                         </ul>
@@ -110,7 +97,7 @@
                                             hill, enjoy amazing dining and partake in the endless events we have going
                                             on all season long. This winter, make New Orleans your Winter
                                             destination.</strong>
-                                        <h2 class="font-light-blue font-lg-50 text-center"> Spring Activities</h2>
+                                        <h2 class="font-light-blue font-lg-50 text-center"> WINTER ACTIVITIES</h2>
                                     </div>
                                     <div class="grid-images max-w-800">
                                         <div class="row" id="top_ten_activies_medias">
@@ -166,7 +153,7 @@
                             <!-- <div id="color-overlay"></div> -->
                             <div class="top-10-activities-section max-w-800 position-relative pb-3">
                                 <div class="block-caption py-4 text-center font-light-blue">
-                                    <h3>Top 10 Spring Activities</h3>
+                                    <h3>Top 10 Winter Activities</h3>
                                 </div>
                                 <div class="list top-10-list">
                                     <div class="row" id="top_ten_activies">
@@ -334,7 +321,7 @@
                                     <div
                                         class="top-10-activities-section max-w-800 position-relative top-winter-festival">
                                         <div class="py-5 text-center font-light-blue">
-                                            <h3 class="font-light-blue">Top Spring Festivals & Events
+                                            <h3 class="font-light-blue">TOP Winter Festivals & Events
                                             </h3>
                                         </div>
                                         <div class="list">
@@ -485,7 +472,7 @@
 		}
 		base_url=base_url+'/'+'single.html?type=articles&id=';
 		
-		var season='Spring';
+		var season='Winter';
         var header_token = 'CFPAT-tfADlldfaUwMAa6Jonot7EKlDv8Il2m-oUSg1IdDJpw';
         var url = 'https://api.contentful.com/spaces/o006zo04tiuo/environments/master/';
         async function get_entities(type, category,limit) {
@@ -541,33 +528,36 @@
             var entities = await get_entities(type,seasons, limit);
             //console.log(entities); //return false;
             var entity_obj = entities.items;
-			entity_obj= await filter_orders(entity_obj);
-            var html6 = "";
-            var html12 = "";
+            var html = "";
             var media = "";
             for (var i = 0; i < entity_obj.length; i++) {
                 var asset_id = entity_obj[i].fields.articleMedia['en-US'].sys.id;
                 var image = await get_entities_images(asset_id);
                 var image_url = 'https:' + image.fields.file['en-US'].url;                
-				if(i<5){
-                html6 += `
+				if(i%2==0){
+                html += `
+				<div class="col-md-6">
+					<div class="list-item-first-column">
 						<div><span>${i+1}</span><a href="${base_url}${entity_obj[i].sys.id}">${entity_obj[i].fields.title['en-US']}</a>
 							<p>${entity_obj[i].fields.articleBody['en-US'].content[0].content[0].value}</p>
 						</div>
-					`;
-				}else{
-				 html12 += `
+					</div>
+				</div>`;
+				}
+				if(i%2!=0){
+				 html += `<div class="col-md-6">
+					<div class="list-item-first-column">
 						<div><span>${i+1}</span><a href="${base_url}${entity_obj[i].sys.id}">${entity_obj[i].fields.title['en-US']}</a>
 							<p>${entity_obj[i].fields.articleBody['en-US'].content[0].content[0].value}</p>
 						</div>
+					</div>
+				</div>
 				`;
 				}				
 			}//end of for loop
 			
-            $(element).find('.list-item-first-column').html('');
-            $(element).find('.list-item-first-column').html(html6);
-            $(element).find('.list-item-second-column').html('');
-            $(element).find('.list-item-second-column').html(html12);
+            $(element).html('');
+            $(element).html(html);
 			         
         }
         async function rendering_content() {
@@ -579,12 +569,11 @@
         }
         rendering_content();
     </script>
-    <script>
-	 async function callingblogFunction(type, category, element, limit) {
+    <script>	  
+	  async function callingblogFunction(type, category, element, limit) {
       var entities = await get_blog_entities(type,category, limit);
       //console.log(entities);return false
       var entity_obj = entities.items;
-	  entity_obj= await filter_orders(entity_obj);
       var html = "";
       for (var i = 0; i < entity_obj.length; i++) {
         var asset_id = entity_obj[i].fields.articleMedia['en-US'].sys.id;
@@ -613,7 +602,6 @@
 	async function callingplacementTopFesteventFunction(type, category, element, limit) {
       var entities = await get_placementTopFestevent_entities(type,category, limit);     
       var entity_obj = entities.items;
-	  entity_obj= await filter_orders(entity_obj);
       var html = "";
       for (var i = 0; i < entity_obj.length; i++) {
         var asset_id = entity_obj[i].fields.articleMedia['en-US'].sys.id;
@@ -629,7 +617,6 @@
 	async function callingplacementBestOfFunction(type, seasons,element, limit) {
 		var entities = await get_placementBestOf_entities(type,seasons, limit);		
 		var entity_obj = entities.items;
-		entity_obj= await filter_orders(entity_obj);
 		var html = "";
 		var media = "";
 		for (var i = 0; i < entity_obj.length; i++) {
@@ -648,16 +635,6 @@
     }
     </script>
     <script>
-		async function filter_orders(entity_obj){
-			entity_obj.sort(function(a, b) {
-				if(a.fields.placementTop10Order !=undefined && b.fields.placementTop10Order!=undefined){
-					return a.fields.placementTop10Order['en-US'] - b.fields.placementTop10Order['en-US'];
-				}else{
-					return true;
-				}
-			});
-			return entity_obj;
-		}
         $(document).ready(function () {
             $(function () {
                 $(".menu-icon").click(function () {
