@@ -564,8 +564,10 @@
 				}				
 			}//end of for loop
 			
-            $(element).html('');
-            $(element).html(html);
+            $(element).find('.list-item-first-column').html('');
+            $(element).find('.list-item-first-column').html(html6);
+            $(element).find('.list-item-second-column').html('');
+            $(element).find('.list-item-second-column').html(html12);
 			         
         }
         async function rendering_content() {
