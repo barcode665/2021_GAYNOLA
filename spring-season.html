@@ -548,18 +548,15 @@
             for (var i = 0; i < entity_obj.length; i++) {
                 var asset_id = entity_obj[i].fields.articleMedia['en-US'].sys.id;
                 var image = await get_entities_images(asset_id);
-                var image_url = 'https:' + image.fields.file['en-US'].url; 
-				var content_body=(entity_obj[i].fields.articleBody !=undefined)?entity_obj[i].fields.articleBody['en-US'].content[0].content[0].value:"";
+                var image_url = 'https:' + image.fields.file['en-US'].url; 				
 				if(i<5){
                 html6 += `
 						<div><span>${i+1}</span><a href="${base_url}${entity_obj[i].sys.id}">${entity_obj[i].fields.title['en-US']}</a>
-							<p>${content_body}</p>
 						</div>
 					`;
 				}else{
 				 html12 += `
-						<div><span>${i+1}</span><a href="${base_url}${entity_obj[i].sys.id}">${entity_obj[i].fields.title['en-US']}</a>
-							<p>${content_body}</p>
+						<div><span>${i+1}</span><a href="${base_url}${entity_obj[i].sys.id}">${entity_obj[i].fields.title['en-US']}</a>							
 						</div>
 				`;
 				}				
@@ -619,8 +616,7 @@
       for (var i = 0; i < entity_obj.length; i++) {
         var asset_id = entity_obj[i].fields.articleMedia['en-US'].sys.id;
         html += `
-			<li><a href="${base_url}${entity_obj[i].sys.id}">- ${entity_obj[i].fields.title['en-US']}</a>
-				<p>${entity_obj[i].fields.articleBody['en-US'].content[0].content[0].value}</p>
+			<li><a href="${base_url}${entity_obj[i].sys.id}">- ${entity_obj[i].fields.title['en-US']}</a>				
 			</li>			
 			`;
       }
