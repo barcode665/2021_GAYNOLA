@@ -132,7 +132,7 @@
                 <div class="item item-three">
                   <div class="head">
                     <strong>FALL</strong>
-                    <p>Sep - Now</p>
+                    <p>Sep - Nov</p>
                   </div>
                   <div class="content">
                     <img alt="" src="images/3.jpg">
@@ -206,7 +206,7 @@
         <div class="block-caption">
 
           <span>Best of New Orleans</span>
-          <h3>Winter</h3>
+          <h3 id="season_name">Winter</h3>
         </div>
         <div class="list" id="articles">
 
@@ -724,6 +724,30 @@
                 });
             });
         });
+	var month_check = moment(new Date(), 'YYYY/MM/DD');
+	var month_info = month_check.format('M');
+	var season_info=getSeason(month_info);
+	$("#season_name").text(season_info);
+	function getSeason(month) {
+		switch(month) {
+			case '12':
+			case '1':
+			case '2':
+				return 'WINTER';
+			case '3':
+			case '4':
+			case '5':
+				return 'SPRING';
+			case '6':
+			case '7':
+			case '8':
+				return 'SUMMER';
+			case '9':
+			case '10':
+			case '11':
+				return 'FALL';
+		}		
+	}
   </script>
 </body>
 
